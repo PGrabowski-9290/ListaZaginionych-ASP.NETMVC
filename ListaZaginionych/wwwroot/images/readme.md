@@ -1,0 +1,1 @@
+﻿### Folder dla zdjęć przesyłanych dla zgłoszeń osób zaginionych

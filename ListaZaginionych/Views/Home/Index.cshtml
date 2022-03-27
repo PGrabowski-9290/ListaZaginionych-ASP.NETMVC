@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid text-center">
+    <h3 class="h3">Ewidencja Zaginionych</h3>
+    <p>Strona gromadząca informacje i udostępniająca na temat osób zaginionych</p>
+    <p>Rejestr działa na terenie całego Kraju</p>
+    <p>Aby móc dodać ogłoszenie zaginionej osoby należy być zalogowanym <br />
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <span class="text-muted">
+                <a asp-area="Identity" asp-page="/Account/Login">HERE</a> to login
+            </span>
+        }
+        else
+        {
+            <span class="text-muted">
+                <a asp-controller="LostPeople" asp-action="Add">CLICK HERE</a> to add
+            </span>
+        }
+    </p>
+</div>

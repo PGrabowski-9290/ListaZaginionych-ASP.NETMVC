@@ -1,0 +1,66 @@
+﻿@model ListaZaginionych.Data.Models.LostPeopleModel
+@{
+    ViewData["Title"] = "Szczegóły";
+}
+<div class="container-fluid">
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <div class="row">
+            <div class="btn-group">
+                <a asp-controller="LostPeople" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edytuj</a>
+                <a asp-controller="LostPeople" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-secondary">Usuń</a>
+            </div>
+        </div>
+    }
+    
+    <div class="row">
+        <hr />
+        <div class="col-md-8">
+            <section>
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        Imię
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
+                    <dt class="col-sm-4">
+                        Nazwisko
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
+                    <dt class="col-sm-4">
+                        Wiek
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Age)
+                    </dd>
+                    <dt class="col-sm-4">
+                        Płeć
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Gender)
+                    </dd>
+                    <dt class="col-sm-4">
+                        Ostatnio widziany
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.LastSeenDate)
+                    </dd>
+                    <dt class="col-sm-4">
+                        Miejsce ostaniego pobytu
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.LastSeenLocation)
+                    </dd>
+                </dl>
+            </section>
+        </div>
+        <div class="col-md-4">
+            <section>
+                <img alt="preson image" src="~/images/@Model.Image" asp-append-version="true"  class="rouded img-fluid mx-auto d-block"/>
+            </section>
+        </div>
+    </div>
+</div>

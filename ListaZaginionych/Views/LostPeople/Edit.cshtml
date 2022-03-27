@@ -1,0 +1,109 @@
+﻿@model ListaZaginionych.Models.LostPeopleViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edytuj wpis</h1>
+
+<hr />
+<div class="col-md-10 align-self-auto py-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edytuj ogłoszenie</h4>
+            <form enctype="multipart/form-data" asp-action="Edit">
+                <input asp-for="ImagePath" hidden="hidden"/>
+                <input asp-for="Id" hidden="hidden" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="FirstName" class="control-label"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="LastName" class="control-label"></label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Gender" class="control-label"></label>
+                            <select asp-for="Gender" class="form-control">
+                                <option value="">Wybierz płeć</option>
+                                <option value="Mężczyzna">Mężczyzna</option>
+                                <option value="Kobieta">Kobieta</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Age" class="control-label"></label>
+                            <input asp-for="Age" class="form-control" />
+                            <span asp-validation-for="Age" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="LastSeenLocation" class="control-label"></label>
+                            <input asp-for="LastSeenLocation" class="form-control" />
+                            <span asp-validation-for="LastSeenLocation" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="LastSeenDate" class="control-label"></label>
+                            <input asp-for="LastSeenDate" class="form-control" />
+                            <span asp-validation-for="LastSeenDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Image" class="control-label"></label>
+                            <div class="custom-file">
+                                <input asp-for="Image" class="custom-file-input" id="customFile" accept=".png,.jpg,.jpeg,.gif,.tif"/>
+                                <label class="custom-file-label">Wybierz zdjęcie</label>
+                            </div>
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="img-thumbnail rounded mx-auto d-block" src="~/images/@Model.ImagePath" alt="@Model.ImagePath" id="img-preview"/>
+                    </div>
+                </div>
+                <div class="form-group">  
+                    <input type="submit" value="Zapisz" class="btn btn-sm btn-primary text-uppercase" />  
+                    <a asp-action="Index" class="btn btn-sm btn-primary text-uppercase"><i class="fas fa-fast-backward"></i> Wróć do listy</a>  
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{  
+    <script type="text/javascript">  
+          
+        $(".custom-file-input").on("change", function () { 
+            var preview = document.getElementById('img-preview')
+            var fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            console.log("click")
+            preview.src = URL.createObjectURL(event.target.files[0]);
+            preview.onload = function() {
+                URL.revokeObjectURL(preview.src)
+            }
+        });
+
+    </script>  
+}  
+

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ListaZaginionych.Data.Models.LostPeopleModel>
+@{
+    ViewData["Title"] = "Lista";
+}
+
+<div class="container-fluid">
+    <div class="container-fluid mb-2">
+        <h1 class="row display-4 text-center">Osoby zaginione</h1>
+        <div class="row">
+            <div class="col-8">
+                FILTRY
+            </div>
+            <div class="col-3 text-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="LostPeople" asp-action="Add" class="btn btn-primary">Dodaj</a>
+                }
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid"> 
+        <table class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Age)</th>
+                    <th>@Html.DisplayNameFor(model => model.Gender)</th>
+                    <th >
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count()!=0)
+                {
+                    foreach(var el in Model)
+                    {
+                        <tr>
+                            <td>@el.FirstName</td>
+                            <td>@el.LastName</td>
+                            <td>@el.Age</td>
+                            <td>@el.Gender</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Actions Menu">
+                                    <a asp-controller="LostPeople" asp-action="Details" asp-route-id="@el.Id" class="btn btn-secondary">Szczegóły</a>
+                                    @if (User.IsInRole("Admin") && User.Identity.IsAuthenticated)
+                                    {
+                                        <a asp-controller="LostPeople" asp-action="Edit" asp-route-id="@el.Id" class="btn btn-secondary">Edytuj</a>
+                                        <a asp-controller="LostPeople" asp-action="Delete" asp-route-id="@el.Id" class="btn btn-secondary">Usuń</a>
+                                    }                                
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td class="text-center" colspan="5">Brak wpisów do wyświetlenia</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
