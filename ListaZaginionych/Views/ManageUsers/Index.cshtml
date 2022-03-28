@@ -1,5 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using ListaZaginionych.Models
+@model List<UserViewModel>
 @{
+    ViewData["Title"] = "Zarządzaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container-fluid">
+    <h1 class="display-4">Zarządzanie urzytkownikami</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@string.Join(" , ", user.Roles.ToList())</td>
+                    <td>
+                        <a asp-controller="ManageUsers" asp-action="EditUser" asp-route-userId="@user.Id" class="btn btn-secondary btn-sm">Zarządzaj</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

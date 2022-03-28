@@ -45,9 +45,9 @@ namespace ListaZaginionych
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("readpolicy",
-                    builder => builder.RequireRole("Admin", "User"));
+                    builder => builder.RequireRole(Enums.Roles.Admin.ToString(), Enums.Roles.User.ToString()));
                 options.AddPolicy("writepolicy",
-                    builder => builder.RequireRole("Admin"));
+                    builder => builder.RequireRole(Enums.Roles.Admin.ToString()));
             });
         }
 

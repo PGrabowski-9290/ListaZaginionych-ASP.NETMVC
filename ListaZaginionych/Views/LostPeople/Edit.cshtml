@@ -9,8 +9,11 @@
 <hr />
 <div class="col-md-10 align-self-auto py-4">
     <div class="card">
-        <div class="card-body">
+        <div class="card-header">
             <h4 class="card-title">Edytuj ogłoszenie</h4>
+        </div>
+        <div class="card-body">
+            
             <form enctype="multipart/form-data" asp-action="Edit">
                 <input asp-for="ImagePath" hidden="hidden"/>
                 <input asp-for="Id" hidden="hidden" />

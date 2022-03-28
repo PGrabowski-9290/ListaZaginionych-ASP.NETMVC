@@ -1,0 +1,61 @@
+﻿
+@model ListaZaginionych.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Edit User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="d-flex justify-content-center align-align-items-center">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Edycja użytkownika</h4>
+                </div>
+                <div class="card-body">            
+                    <form method="post">        
+                        @Html.HiddenFor(m => m.Id)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="UserName" class="control-label"></label>
+                                    <input asp-for="UserName" class="form-control" />
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-1">            
+                            <div class="col-md-7">
+                                @string.Join(", ", @Model.Roles)
+                            </div>
+                            <div class="col-md-4">
+                                <a asp-action="ManageRoles" asp-route-userId="@Model.Id" class="btn btn-secondary btn-sm">Zarządzaj Uprawnieniami</a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">  
+                                    <input type="submit" value="Zapisz" class="btn btn-sm btn-primary text-uppercase" />  
+                                    <a asp-action="Index" class="btn btn-sm btn-primary text-uppercase"><i class="fas fa-fast-backward"></i> Wróć do listy</a>  
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+        </div>
+    </div>
+       
+</div>
