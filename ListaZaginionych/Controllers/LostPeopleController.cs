@@ -8,6 +8,7 @@ using ListaZaginionych.Models;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Linq;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 
@@ -23,9 +24,13 @@ namespace ListaZaginionych.Controllers
             _webHostEnvironment = hostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string? name, string? gender)
         {
-            IList<LostPeopleModel> list = _managerLostPeople.GetAll();
+            IQueryable<LostPeopleModel> list = _managerLostPeople.GetAll();
+            if(name != null)
+                list = list.Where(x => x.FirstName.Contains(name));
+            if (gender != null)
+                list = list.Where(x=> x.Gender == gender);
             return View(list);
         }
 

@@ -36,9 +36,9 @@ namespace ListaZaginionych.Logic
             return _context.LostPeople.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<LostPeopleModel> GetAll()
+        public IQueryable<LostPeopleModel> GetAll()
         {
-            return _context.LostPeople.ToList();
+            return _context.LostPeople.AsQueryable();
         }
 
         public ILostPeopleManager Remove(int id)

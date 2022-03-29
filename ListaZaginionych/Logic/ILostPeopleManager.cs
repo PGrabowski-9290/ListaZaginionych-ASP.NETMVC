@@ -1,5 +1,5 @@
 ﻿using ListaZaginionych.Data.Models;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace ListaZaginionych.Logic
 {
@@ -9,6 +9,6 @@ namespace ListaZaginionych.Logic
         ILostPeopleManager Remove(int id);
         ILostPeopleManager Update(LostPeopleModel model);
         LostPeopleModel Get(int id);
-        List<LostPeopleModel> GetAll();
+        IQueryable<LostPeopleModel> GetAll();
     }
 }

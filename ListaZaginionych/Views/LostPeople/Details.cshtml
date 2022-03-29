@@ -3,15 +3,18 @@
     ViewData["Title"] = "Szczegóły";
 }
 <div class="container-fluid">
-    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-    {
-        <div class="row">
-            <div class="btn-group">
-                <a asp-controller="LostPeople" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edytuj</a>
-                <a asp-controller="LostPeople" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-secondary">Usuń</a>
-            </div>
+    
+    <div class="row">
+        <div class="btn-group">
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+            <a asp-controller="LostPeople" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edytuj</a>
+            <a asp-controller="LostPeople" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-secondary">Usuń</a>
+            }
+            <a asp-controller="LostPeople" asp-action="Index" class="btn btn-secondary">Wróć</a>
         </div>
-    }
+    </div>
+    
     
     <div class="row">
         <hr />
